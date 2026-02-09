@@ -168,12 +168,13 @@ public class PlayerNBTManager implements PlayerFileData, IDataManager {
     }
 
     public void a(EntityHuman entityhuman) {
+        String tmpName = "tmp" + UUID.randomUUID() + ".dat";
         if ((boolean) PoseidonConfig.getInstance().getConfigOption("settings.save-playerdata-by-uuid")) {
             try {
                 NBTTagCompound nbttagcompound = new NBTTagCompound();
 
                 entityhuman.d(nbttagcompound);
-                File file1 = new File(this.c, "_tmp_.dat");
+                File file1 = new File(this.c, tmpName);
                 //File file2 = new File(this.c, entityhuman.name + ".dat");
                 //UUIDPlayerStorage.getInstance().getUUIDGraceful(entityhuman.name)
                 File file2 = new File(this.c, UUIDManager.getInstance().getUUIDGraceful(entityhuman.name) + ".dat");
@@ -191,7 +192,7 @@ public class PlayerNBTManager implements PlayerFileData, IDataManager {
                 NBTTagCompound nbttagcompound = new NBTTagCompound();
 
                 entityhuman.d(nbttagcompound);
-                File file1 = new File(this.c, "_tmp_.dat");
+                File file1 = new File(this.c, tmpName);
                 File file2 = new File(this.c, entityhuman.name + ".dat");
 
                 CompressedStreamTools.a(nbttagcompound, (OutputStream) (new FileOutputStream(file1)));
